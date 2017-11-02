@@ -29,6 +29,6 @@ from openstack_plugin_common import with_nova_client
 @with_nova_client
 def get(nova_client, args, **kwargs):
     
-    quotas =  nova_client.quotas.get('admin')
+    limits =  nova_client.limits.get()
 
-    ctx.logger.info('boot_volume_id: {0}'.format(quotas))
+    ctx.logger.info('boot_volume_id: {0}'.format(limits))
