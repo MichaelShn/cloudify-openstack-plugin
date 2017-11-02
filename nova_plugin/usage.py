@@ -30,8 +30,11 @@ from openstack_plugin_common import with_nova_client
 def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
-
+    
     ctx.logger.info('Limits: {}' . format(limits))
-    ctx.logger.info('Limits.limits: {}' . format(limits.limits))
-    ctx.logger.info('Limits.limits.absolute: {}' . format(limits.limits.absolute))    
-    ctx.logger.info('Limits.limits.absolute.maxSecurityGroups: {}' . format(limits.limits.absolute.maxSecurityGroups))
+    
+    limitstxt = ["%.2f" % member for member in limits ]
+    
+    ctx.logger.info('Limits: {}' . format(limitstxt))
+    
+    
