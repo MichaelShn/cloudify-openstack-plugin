@@ -31,4 +31,4 @@ def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get(False,'admin')
 
-    ctx.logger.info('boot_volume_id: {0}'.format(limits))
+    ctx.logger.info('boot_volume_id: {}' . format(limits))
