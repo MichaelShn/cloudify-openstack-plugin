@@ -31,10 +31,8 @@ def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
     
-    ctx.logger.info('Limits: {}' . format(limits))
+    ctx.logger.info('Limits: {}' . format(limits.absolute))
     
-    limitstxt = ["%.2f" % member for member in limits ]
-    
-    ctx.logger.info('Limits: {}' . format(limitstxt))
+    ctx.instance.runtime_properties['mine'] = 'mashoe'
     
     
