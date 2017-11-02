@@ -29,6 +29,9 @@ from openstack_plugin_common import with_nova_client
 @with_nova_client
 def get(nova_client, args, **kwargs):
     
-    limits =  nova_client.limits.get(False,'admin')
+    limits =  nova_client.limits.get()
 
-    ctx.logger.info('boot_volume_id: {}' . format(limits))
+    ctx.logger.info('Limits: {}' . format(limits))
+    ctx.logger.info('Limits.limits: {}' . format(limits.limits))
+    ctx.logger.info('Limits.limits.absolute: {}' . format(limits.limits.absolute))    
+    ctx.logger.info('Limits.limits.absolute.maxSecurityGroups: {}' . format(limits.limits.absolute.maxSecurityGroups))
