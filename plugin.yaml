@@ -10,6 +10,9 @@ plugins:
     package_version: '2.0.2.1'
 
 node_types:
+
+
+
   cloudify.openstack.nodes.Server:
     derived_from: cloudify.nodes.Compute
     properties:
@@ -823,6 +826,26 @@ node_types:
         delete: openstack.keystone_plugin.project.delete
       cloudify.interfaces.validation:
         creation: openstack.keystone_plugin.project.creation_validation
+
+  cloudify.openstack.nodes.Usage:
+    derived_from: cloudify.nodes.ApplicationModule
+    properties:
+      openstack_config:
+        default: {}
+        description: >
+          endpoints and authentication configuration for Openstack.
+          Expected to contain the following nested fields:
+          username, password, tenant_name, auth_url, region.
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        create:
+          implementation: openstack.nova_plugin.usage.get
+          inputs:
+            args:
+              default: {}
+            openstack_config:
+              default: {}
+
 
 relationships:
   cloudify.openstack.port_connected_to_security_group:
