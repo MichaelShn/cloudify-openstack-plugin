@@ -18,6 +18,7 @@ from cloudify.decorators import operation
 from openstack_plugin_common import with_nova_client
 
 
+#ctx.instance.runtime_properties['mine'] = 'mashoe'
 # random note regarding nova floating-ips: floating ips on nova-net have
 # pre-assigned ids, and thus a call "nova.floating_ips.get(<fip_id>)" will
 # return a value even if the floating-ip isn't even allocated.
@@ -30,9 +31,5 @@ from openstack_plugin_common import with_nova_client
 def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
-    
     ctx.logger.info('ALimits: {}' . format( pformat(limits) )
                     
-    #ctx.instance.runtime_properties['mine'] = 'mashoe'
-    
-    
