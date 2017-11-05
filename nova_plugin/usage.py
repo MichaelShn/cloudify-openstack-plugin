@@ -33,6 +33,6 @@ def get(nova_client, args, **kwargs):
     
     ctx.logger.info('ALimits: {}' . format( pformat(limits) )
                     
-    ctx.instance.runtime_properties['mine'] = 'mashoe'
+    #ctx.instance.runtime_properties['mine'] = 'mashoe'
     
     
