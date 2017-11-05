@@ -32,7 +32,7 @@ def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
     
-    alimits = limits.absolute()
+    alimits = limits.absolute
     
     ctx.logger.info('ALimits: {}' . format( pformat(alimits) ) )
                     
