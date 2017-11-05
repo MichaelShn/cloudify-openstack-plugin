@@ -12,7 +12,7 @@
 #  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  * See the License for the specific language governing permissions and
 #  * limitations under the License.
-
+from pprint import pformat
 from cloudify import ctx
 from cloudify.decorators import operation
 from openstack_plugin_common import with_nova_client
@@ -30,15 +30,9 @@ from openstack_plugin_common import with_nova_client
 def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
-        
-    alimits = limits.absolute
-   
-    ctx.logger.info('ALimits: {}' . format(alimits)
-                    
-    for alimit in alimits:
-          ctx.logger.info('ALimits: {}' . format(alimit.name)          
-   
     
+    ctx.logger.info('ALimits: {}' . format( pformat(limits) )
+                    
     ctx.instance.runtime_properties['mine'] = 'mashoe'
     
     
