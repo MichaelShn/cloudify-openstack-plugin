@@ -33,5 +33,5 @@ def get(nova_client, args, **kwargs):
     limits =  nova_client.limits.get()
     
     for alimit in limits.absolute:
-        ctx.logger.info('ALimits: {}' . format( pformat(alimit) ) )
+        ctx.logger.info('ALimits: {0} Value {1} ' . format( alimit.name, alimit.value ) )
                     
