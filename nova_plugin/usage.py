@@ -30,10 +30,8 @@ from openstack_plugin_common import with_nova_client
 def get(nova_client, args, **kwargs):
     
     limits =  nova_client.limits.get()
-    
-    ctx.logger.info('Limits: {}' . format(limits.absolute())
-    
-    alimits= limits.absolute                    
+        
+    alimits = limits.absolute
    
     ctx.logger.info('ALimits: {}' . format(alimits)
                     
