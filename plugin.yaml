@@ -827,7 +827,7 @@ node_types:
       cloudify.interfaces.validation:
         creation: openstack.keystone_plugin.project.creation_validation
 
-  cloudify.openstack.nodes.Usage:
+  cloudify.openstack.nodes.Limits:
     derived_from: cloudify.nodes.ApplicationModule
     properties:
       openstack_config:
@@ -839,7 +839,7 @@ node_types:
     interfaces:
       cloudify.interfaces.lifecycle:
         create:
-          implementation: openstack.nova_plugin.usage.get
+          implementation: openstack.nova_plugin.limits.get
           inputs:
             args:
               default: {}
