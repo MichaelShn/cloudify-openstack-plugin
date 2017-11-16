@@ -849,11 +849,10 @@ node_types:
             openstack_config:
               default: {}
         start:
-          implementation: openstack.nova_plugin.limits.
+          implementation: openstack.nova_plugin.limits.check
           inputs:
             check_limits:
               default: {}
-
             openstack_config:
               default: {}
 
