@@ -583,13 +583,13 @@ node_types:
               description: >
                 Number of times to check for the creation's status before failing
               type: integer
-              default: 20 
+              default: 20
             status_timeout:
               description: >
                 Interval (in seconds) between subsequent inquiries of the creation's
                 status
               type: integer
-              default: 15 
+              default: 15
         delete:
           implementation: openstack.cinder_plugin.volume.delete
           inputs:
@@ -836,6 +836,9 @@ node_types:
           endpoints and authentication configuration for Openstack.
           Expected to contain the following nested fields:
           username, password, tenant_name, auth_url, region.
+      check_limits:
+        default: []
+
     interfaces:
       cloudify.interfaces.lifecycle:
         create:
@@ -843,6 +846,14 @@ node_types:
           inputs:
             args:
               default: {}
+            openstack_config:
+              default: {}
+        start:
+          implementation: openstack.nova_plugin.limits.
+          inputs:
+            check_limits:
+              default: {}
+
             openstack_config:
               default: {}
 

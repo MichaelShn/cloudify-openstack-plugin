@@ -29,11 +29,39 @@ from openstack_plugin_common import with_nova_client
 @operation
 @with_nova_client
 def get(nova_client, args, **kwargs):
-    
+
     limits =  nova_client.limits.get()
-    
+
     for alimit in limits.absolute:
         ctx.instance.runtime_properties[alimit.name] = alimit.value
-    
-    
-                    
+
+
+@operation
+@with_nova_client
+def check(nova_client, args, **kwargs):
+
+    check_limits = ctx.node.properties['check_limits']
+
+    for check_limit in check_limits:
+
+        # Code fot methode of calculation by_max_used_limit
+        if check_limit['calculate'] = 'by_max_used_limit' :
+            available = ctx.instance.runtime_properties[check_limit['max']] -  ctx.instance.runtime_properties[check_limit['used']]
+            if available - check_limit['value'] > 0 :
+                 result = True
+            else:
+                 result = False
+
+        # update resutl to runtime_props
+        ctx.instance.runtime_properties[check_limit['name']] = result
+
+        if result:
+
+             ctx.logger.info('Limit Passed {0} Required :{1} Available:{2}  '.format(check_limit['name'],  check_limit['value'], available))
+        else:
+
+             #if it's ahard limit fail workflow else logg
+             if check_limit['type'] = 'hard':
+                 raise NonRecoverableError('Hard Limit failiure, Limit {0} Required :{1} Available:{2}  '.format(check_limit['name'],  check_limit['value'], available))
+             else:                 
+                 ctx.logger.warn('Limit Failed {0} Required :{1} Available:{2}  '.format(check_limit['name'],  check_limit['value'], available))
