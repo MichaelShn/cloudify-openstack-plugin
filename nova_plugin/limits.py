@@ -45,7 +45,7 @@ def check(nova_client, args, **kwargs):
     for check_limit in check_limits:
 
         # Code fot methode of calculation by_max_used_limit
-        if check_limit['calculate'] = 'by_max_used_limit' :
+        if check_limit['calculate'] is 'by_max_used_limit' :
             available = ctx.instance.runtime_properties[check_limit['max']] -  ctx.instance.runtime_properties[check_limit['used']]
             if available - check_limit['value'] > 0 :
                  result = True
@@ -53,7 +53,7 @@ def check(nova_client, args, **kwargs):
                  result = False
 
         # update resutl to runtime_props
-        ctx.instance.runtime_properties[check_limit['name']] = result
+        ctx.instance.runtime_properties[check_limit['name']] is result
 
         if result:
 
@@ -61,7 +61,7 @@ def check(nova_client, args, **kwargs):
         else:
 
              #if it's ahard limit fail workflow else logg
-             if check_limit['type'] = 'hard':
+             if check_limit['type'] is 'hard':
                  raise NonRecoverableError('Hard Limit failiure, Limit {0} Required :{1} Available:{2}  '.format(check_limit['name'],  check_limit['value'], available))
-             else:                 
+             else:
                  ctx.logger.warn('Limit Failed {0} Required :{1} Available:{2}  '.format(check_limit['name'],  check_limit['value'], available))
