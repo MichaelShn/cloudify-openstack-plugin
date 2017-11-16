@@ -43,7 +43,9 @@ def check(nova_client, check_limits, **kwargs):
     check_limits = ctx.node.properties['check_limits']
 
     for check_limit in check_limits:
-
+        result = False
+        available = 0
+        
         ctx.logger.info('Checking Limit {0}'.format(check_limit['name']))
 
         # Code fot methode of calculation by_max_used_limit
@@ -51,8 +53,6 @@ def check(nova_client, check_limits, **kwargs):
             available = ctx.instance.runtime_properties[check_limit['max']] -  ctx.instance.runtime_properties[check_limit['used']]
             if available - check_limit['value'] > 0 :
                  result = True
-            else:
-                 result = False
 
 
         # update resutl to runtime_props
