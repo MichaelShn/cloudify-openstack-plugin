@@ -38,7 +38,7 @@ def get(nova_client, args, **kwargs):
 
 @operation
 @with_nova_client
-def check(nova_client, args, **kwargs):
+def check(nova_client, check_limits, **kwargs):
 
     check_limits = ctx.node.properties['check_limits']
 
