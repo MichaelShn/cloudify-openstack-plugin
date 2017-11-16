@@ -14,6 +14,7 @@
 #  * limitations under the License.
 from pprint import pformat
 from cloudify import ctx
+from cloudify.exceptions import NonRecoverableError, RecoverableError
 from cloudify.decorators import operation
 from openstack_plugin_common import with_nova_client
 
